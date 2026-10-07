@@ -113,7 +113,7 @@ function Reader({ book, onBack }) {
   return (
     <main className="reader" style={{ '--text-scale': textSize }}>
       <div className="reader-top">
-        <button className="corner-button" onClick={onBack} aria-label="처음으로">
+        <button className="corner-button back" onClick={onBack} aria-label="처음으로">
           ←
         </button>
         <div className="video-wrap">
@@ -131,7 +131,7 @@ function Reader({ book, onBack }) {
             </div>
           )}
         </div>
-        <button className="corner-button" onClick={() => setSettingsOpen(true)} aria-label="설정">
+        <button className="corner-button settings" onClick={() => setSettingsOpen(true)} aria-label="설정">
           ⚙️
         </button>
       </div>

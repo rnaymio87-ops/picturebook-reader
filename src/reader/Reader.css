@@ -21,21 +21,38 @@
   .reader {
     max-width: none;
     grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-    grid-template-rows: minmax(0, 1fr) auto auto;
-    grid-template-areas: 'top text' 'controls text' 'pager text';
+    /* 위·아래 빈 줄(1fr)을 같게 둬서 왼쪽 묶음이 세로 가운데에 오게 */
+    grid-template-rows: 1fr auto auto auto 1fr;
+    grid-template-areas: '. text' 'top text' 'controls text' 'pager text' '. text';
     column-gap: 24px;
-  }
-
-  .reader-top {
-    align-self: end;
   }
 }
 
+/* 위쪽 묶음
+   세로: [←      ⚙️]  첫 줄은 버튼만
+         [  영상    ]  그 아래 영상을 폭 가득
+   가로: [← 영상 ⚙️]  한 줄 (높이가 모자라서) */
 .reader-top {
   grid-area: top;
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: 'back . settings' 'video video video';
+  align-items: start;
   gap: 12px;
+}
+
+@media (orientation: landscape) {
+  .reader-top {
+    grid-template-areas: 'back video settings';
+  }
+}
+
+.corner-button.back {
+  grid-area: back;
+}
+
+.corner-button.settings {
+  grid-area: settings;
 }
 
 .corner-button {
@@ -50,18 +67,19 @@
 }
 
 /* ───────── 영상 ───────── */
-/* 16:9 상자. 세로 화면에선 글자를 위해 화면 높이의 30%까지만 */
+/* 16:9 상자. 세로 화면에선 폭 가득 (단, 아이패드처럼 큰 화면에선 높이의 35%까지만) */
 .video-wrap {
+  grid-area: video;
   position: relative;
-  flex: 1;
-  max-width: calc(30dvh * 16 / 9);
+  width: 100%;
+  max-width: calc(35dvh * 16 / 9);
   margin: 0 auto;
 }
 
 @media (orientation: landscape) {
   .video-wrap {
-    /* 가로 화면: 버튼들 자리를 빼고 남는 높이만큼 */
-    max-width: calc((100dvh - 210px) * 16 / 9);
+    /* 가로 화면: 아래 버튼들 자리를 빼고 남는 높이만큼 */
+    max-width: calc((100dvh - 230px) * 16 / 9);
   }
 }
 
@@ -285,4 +303,35 @@
   background: var(--ink);
   color: #fff;
   font-size: 1.2rem;
+}
+
+/* 아이폰 가로 화면(높이가 낮음): 가운데 뜨는 낮고 넓은 창, 제목은 왼쪽에 */
+@media (orientation: landscape) and (max-height: 600px) {
+  .sheet-backdrop {
+    align-items: center;
+  }
+
+  .sheet {
+    max-width: 640px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 10px 16px;
+    padding: 16px 20px;
+    border-radius: 28px;
+  }
+
+  .sheet h2 {
+    margin: 0;
+  }
+
+  .choice {
+    min-height: 52px;
+  }
+
+  .sheet-close {
+    grid-column: 1 / -1;
+    min-height: 52px;
+    margin-top: 4px;
+  }
 }
