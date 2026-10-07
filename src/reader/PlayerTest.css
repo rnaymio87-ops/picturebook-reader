@@ -1,0 +1,69 @@
+.player-test {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+}
+
+.back-button {
+  align-self: flex-start;
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: var(--card);
+  font-size: 1.6rem;
+  box-shadow: 0 3px 0 rgba(59, 58, 90, 0.15);
+}
+
+/* 유튜브 플레이어: 화면 폭에 맞춘 16:9 상자 */
+.yt-box {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+
+.yt-box iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.time-display {
+  margin: 0;
+  font-family: var(--font-en);
+  font-size: 3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.round-button {
+  width: 72px;
+  height: 72px;
+  border: none;
+  border-radius: 50%;
+  background: var(--card);
+  font-size: 1.6rem;
+  box-shadow: 0 4px 0 rgba(59, 58, 90, 0.15);
+}
+
+.round-button.main {
+  width: 104px;
+  height: 104px;
+  background: var(--yellow);
+  font-size: 2.6rem;
+}
+
+.round-button:active {
+  transform: translateY(3px);
+}

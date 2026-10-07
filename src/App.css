@@ -67,11 +67,11 @@
   background: var(--yellow);
 }
 
+.blue {
+  background: var(--blue);
+}
+
 .pink {
   background: var(--pink);
 }
 
-.home-note {
-  margin: 0;
-  color: var(--ink-soft);
-}
