@@ -19,16 +19,23 @@ function loadYouTubeApi() {
  * 유튜브 플레이어 감싸기.
  * - onTime(초): 재생 중 화면이 바뀔 때마다(1초에 약 60번) "지금 몇 초인지" 알려줌 (형광펜 맞추기에 사용)
  * - onPlayingChange(true/false): 재생/멈춤 상태가 바뀔 때
+ * - playbackRate: 재생 속도 (0.5, 0.75, 1, 1.25 …)
  * - ref로 play(), pause(), seekTo(초), getTime() 사용 가능
  */
-const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPlayingChange }, ref) {
+const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPlayingChange, playbackRate = 1 }, ref) {
   const boxRef = useRef(null)
   const playerRef = useRef(null)
-  // 콜백은 최신 것으로 유지 (플레이어를 다시 만들지 않기 위해)
+  // 콜백·속도는 최신 것으로 유지 (플레이어를 다시 만들지 않기 위해)
   const onTimeRef = useRef(onTime)
   const onPlayingRef = useRef(onPlayingChange)
+  const rateRef = useRef(playbackRate)
   onTimeRef.current = onTime
   onPlayingRef.current = onPlayingChange
+  rateRef.current = playbackRate
+
+  useEffect(() => {
+    playerRef.current?.setPlaybackRate?.(playbackRate)
+  }, [playbackRate])
 
   useImperativeHandle(ref, () => ({
     play: () => playerRef.current?.playVideo(),
@@ -70,6 +77,7 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
           rel: 0, // 끝나고 다른 채널 영상 추천 줄이기
         },
         events: {
+          onReady: (e) => e.target.setPlaybackRate(rateRef.current),
           onError: (e) => console.warn('[YouTubePlayer] 오류 코드', e.data),
           onStateChange: (e) => {
             const playing = e.data === YT.PlayerState.PLAYING

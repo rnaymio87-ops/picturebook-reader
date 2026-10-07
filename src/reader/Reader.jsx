@@ -1,18 +1,10 @@
 import { Fragment, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import YouTubePlayer from '../player/YouTubePlayer.jsx'
-import { findWordAt, sentenceOfWord } from './bookModel.js'
+import { useStoredState } from '../useStoredState.js'
+import { findWordAt, sentenceOfWord, sentenceStartedBy } from './bookModel.js'
 import { paginate } from './paginate.js'
+import SettingsSheet from './SettingsSheet.jsx'
 import './Reader.css'
-
-const VIDEO_HIDDEN_KEY = 'reader.videoHidden'
-
-function loadVideoHidden() {
-  try {
-    return localStorage.getItem(VIDEO_HIDDEN_KEY) === '1'
-  } catch {
-    return false
-  }
-}
 
 // 읽기 화면: 소리에 맞춰 단어 형광펜, 문장을 누르면 그 부분부터 다시 듣기
 function Reader({ book, onBack }) {
@@ -23,12 +15,16 @@ function Reader({ book, onBack }) {
   const [playing, setPlaying] = useState(false)
   const [screens, setScreens] = useState(null) // 화면 페이지 목록 (paginate.js 참고)
   const [pageIndex, setPageIndex] = useState(0)
-  const [videoHidden, setVideoHidden] = useState(loadVideoHidden)
+  const [settingsOpen, setSettingsOpen] = useState(false)
+  // 설정은 기기에 기억
+  const [videoHidden, setVideoHidden] = useStoredState('reader.hideVideo', false)
+  const [speed, setSpeed] = useStoredState('reader.speed', 1)
+  const [textSize, setTextSize] = useStoredState('reader.textSize', 1)
 
   const wordIndex = findWordAt(book.words, time)
   const sentenceIndex = sentenceOfWord(book.sentences, wordIndex)
 
-  // 글자 영역 크기에 맞춰 화면 페이지 나누기 (화면 크기가 바뀌면 다시)
+  // 글자 영역 크기·글씨 크기에 맞춰 화면 페이지 나누기 (바뀌면 다시)
   useLayoutEffect(() => {
     const textBox = textRef.current
     const measureBox = measureRef.current
@@ -39,6 +35,7 @@ function Reader({ book, onBack }) {
       // 끝까지 꽉 채우지 않고 한 줄 정도 여유를 둠
       setScreens(paginate(book, measureBox, textBox.clientHeight - lineHeight))
     }
+    measure()
     const observer = new ResizeObserver(measure)
     observer.observe(textBox)
     window.addEventListener('resize', measure) // 아이패드 가로/세로 돌리기 등
@@ -47,7 +44,7 @@ function Reader({ book, onBack }) {
       observer.disconnect()
       window.removeEventListener('resize', measure)
     }
-  }, [book])
+  }, [book, textSize])
 
   // 단어 번호 → 몇 번째 화면 페이지인지
   const screenOfWord = useMemo(() => {
@@ -67,6 +64,30 @@ function Reader({ book, onBack }) {
   function playFromWord(wi) {
     playerRef.current?.seekTo(book.words[wi].start)
     playerRef.current?.play()
+    // 멈춘 상태에서 다른 페이지 문장으로 이동해도 그 페이지를 보여줌
+    const sc = screenOfWord[wi]
+    if (sc >= 0) {
+      setPageIndex(sc)
+      setFollowedScreen(sc)
+    }
+  }
+
+  function playSentence(i) {
+    playFromWord(book.sentences[i].first)
+  }
+
+  // ⏮ 이전 문장: 지금 문장을 다 들은 뒤라면 그 문장을 다시, 듣는 중이면 그 앞 문장
+  function prevSentence() {
+    const cur = sentenceStartedBy(book, time)
+    if (cur < 0) return playSentence(0)
+    const curEnd = book.words[book.sentences[cur].last].end
+    playSentence(time > curEnd + 0.3 ? cur : Math.max(0, cur - 1))
+  }
+
+  // ⏭ 다음 문장
+  function nextSentence() {
+    const cur = sentenceStartedBy(book, time)
+    if (cur + 1 < book.sentences.length) playSentence(cur + 1)
   }
 
   const screen = screens?.[Math.min(pageIndex, screens.length - 1)]
@@ -89,24 +110,20 @@ function Reader({ book, onBack }) {
     else playFromWord(startWord)
   }
 
-  function toggleVideo() {
-    const next = !videoHidden
-    setVideoHidden(next)
-    try {
-      localStorage.setItem(VIDEO_HIDDEN_KEY, next ? '1' : '0')
-    } catch {
-      // 저장이 안 되는 환경이면 이번에만 적용
-    }
-  }
-
   return (
-    <main className="reader">
+    <main className="reader" style={{ '--text-scale': textSize }}>
       <div className="reader-top">
         <button className="corner-button" onClick={onBack} aria-label="처음으로">
           ←
         </button>
         <div className="video-wrap">
-          <YouTubePlayer ref={playerRef} videoId={book.videoId} onTime={setTime} onPlayingChange={setPlaying} />
+          <YouTubePlayer
+            ref={playerRef}
+            videoId={book.videoId}
+            onTime={setTime}
+            onPlayingChange={setPlaying}
+            playbackRate={speed}
+          />
           {/* 영상만 가리는 덮개 (소리는 계속 나옴) */}
           {videoHidden && (
             <div className="video-cover" aria-hidden="true">
@@ -114,12 +131,8 @@ function Reader({ book, onBack }) {
             </div>
           )}
         </div>
-        <button
-          className="corner-button"
-          onClick={toggleVideo}
-          aria-label={videoHidden ? '영상 보이기' : '영상 가리기'}
-        >
-          {videoHidden ? '📺' : '🙈'}
+        <button className="corner-button" onClick={() => setSettingsOpen(true)} aria-label="설정">
+          ⚙️
         </button>
       </div>
 
@@ -146,17 +159,41 @@ function Reader({ book, onBack }) {
       <div className="page-text measure-box" lang="en" ref={measureRef} aria-hidden="true" />
 
       <nav className="reader-controls">
-        <button className="nav-button" onClick={() => goToPage(pageIndex - 1)} disabled={pageIndex === 0} aria-label="이전 페이지">
-          ◀
+        <button className="step-button" onClick={prevSentence} aria-label="이전 문장">
+          ⏮
         </button>
         <button className="play-button" onClick={togglePlay} aria-label={playing ? '멈춤' : '듣기'}>
           {playing ? '⏸' : '▶'}
         </button>
-        <button className="nav-button" onClick={() => goToPage(pageIndex + 1)} disabled={isLast} aria-label="다음 페이지">
+        <button className="step-button" onClick={nextSentence} aria-label="다음 문장">
+          ⏭
+        </button>
+      </nav>
+
+      <nav className="page-bar">
+        <button className="page-button" onClick={() => goToPage(pageIndex - 1)} disabled={pageIndex === 0} aria-label="이전 페이지">
+          ◀
+        </button>
+        <span className="page-count">
+          {screens ? `${pageIndex + 1} / ${screens.length}` : ''}
+          {speed !== 1 && <span className="speed-badge">×{speed}</span>}
+        </span>
+        <button className="page-button" onClick={() => goToPage(pageIndex + 1)} disabled={isLast} aria-label="다음 페이지">
           ▶
         </button>
       </nav>
-      <p className="page-count">{screens ? `${pageIndex + 1} / ${screens.length}` : ''}</p>
+
+      {settingsOpen && (
+        <SettingsSheet
+          speed={speed}
+          onSpeed={setSpeed}
+          textSize={textSize}
+          onTextSize={setTextSize}
+          videoHidden={videoHidden}
+          onVideoHidden={setVideoHidden}
+          onClose={() => setSettingsOpen(false)}
+        />
+      )}
     </main>
   )
 }

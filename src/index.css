@@ -36,8 +36,8 @@ button {
   cursor: pointer;
 }
 
-/* 아이패드처럼 큰 화면에선 글씨를 더 크게 */
-@media (min-width: 768px) {
+/* 아이패드처럼 큰 화면에선 글씨를 더 크게 (아이폰 가로 화면은 제외) */
+@media (min-width: 768px) and (min-height: 600px) {
   html,
   body {
     font-size: 24px;

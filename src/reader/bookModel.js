@@ -39,6 +39,15 @@ export function pageOfSentence(pages, sentenceIndex) {
   return pages.findIndex((p) => p.includes(sentenceIndex))
 }
 
+/** time(초)에 해당하는 문장: 이미 시작한 마지막 문장 번호. 첫 문장 전이면 -1 */
+export function sentenceStartedBy(book, time) {
+  let found = -1
+  book.sentences.forEach((s, i) => {
+    if (book.words[s.first].start <= time + 0.05) found = i
+  })
+  return found
+}
+
 /** 문장이 시작하는 시간(초) */
 export function sentenceStart(book, sentenceIndex) {
   return book.words[book.sentences[sentenceIndex].first].start
