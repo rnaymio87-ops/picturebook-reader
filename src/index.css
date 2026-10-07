@@ -1,0 +1,45 @@
+/* 앱 전체에서 쓰는 색과 크기 (아이가 보기 쉽게 크게) */
+:root {
+  --bg: #fff9e8;
+  --card: #ffffff;
+  --ink: #3b3a5a;
+  --ink-soft: #7a7896;
+  --yellow: #ffd84d;
+  --pink: #ff8fb1;
+  --blue: #7cc4ff;
+  --radius: 24px;
+  --font-en: 'Andika', system-ui, sans-serif;
+  --font-ko: 'Jua', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ko);
+  font-size: 20px;
+  -webkit-text-size-adjust: 100%;
+  /* 아이가 실수로 글자를 길게 눌러 선택되는 것 방지 */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 아이패드처럼 큰 화면에선 글씨를 더 크게 */
+@media (min-width: 768px) {
+  html,
+  body {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#FFD84D"/>
+  <!-- 펼친 책 -->
+  <path d="M256 150 C210 118 140 112 92 124 L92 372 C140 360 210 366 256 398 Z" fill="#ffffff" stroke="#3B3A5A" stroke-width="16" stroke-linejoin="round"/>
+  <path d="M256 150 C302 118 372 112 420 124 L420 372 C372 360 302 366 256 398 Z" fill="#ffffff" stroke="#3B3A5A" stroke-width="16" stroke-linejoin="round"/>
+  <!-- 형광펜 줄 -->
+  <rect x="124" y="190" width="100" height="24" rx="8" fill="#FF8FB1"/>
+  <rect x="124" y="240" width="76" height="16" rx="8" fill="#3B3A5A" opacity="0.35"/>
+  <rect x="124" y="280" width="92" height="16" rx="8" fill="#3B3A5A" opacity="0.35"/>
+  <rect x="288" y="190" width="96" height="16" rx="8" fill="#3B3A5A" opacity="0.35"/>
+  <rect x="288" y="230" width="80" height="16" rx="8" fill="#3B3A5A" opacity="0.35"/>
+  <rect x="288" y="270" width="92" height="16" rx="8" fill="#3B3A5A" opacity="0.35"/>
+</svg>
