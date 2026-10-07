@@ -1,4 +1,5 @@
 // ⚙️ 설정 창: 속도, 글씨 크기, 영상 보이기/가리기
+// (바로가기도 있음: 속도 표시 누르기, 영상 두 번 톡톡)
 export const SPEEDS = [
   { value: 0.5, label: '🐢 0.5' },
   { value: 0.75, label: '0.75' },
@@ -52,6 +53,8 @@ function SettingsSheet({ speed, onSpeed, textSize, onTextSize, videoHidden, onVi
           value={videoHidden}
           onChange={onVideoHidden}
         />
+
+        <p className="sheet-tip">💡 영상 두 번 톡톡 → 가리기/보이기 · 영상 1.5초 꾹 → 유튜브에서 보기 · 속도 표시 누르기 → 속도 바꾸기</p>
 
         <button className="sheet-close" onClick={onClose}>
           닫기

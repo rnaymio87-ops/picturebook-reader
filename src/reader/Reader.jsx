@@ -3,7 +3,8 @@ import YouTubePlayer from '../player/YouTubePlayer.jsx'
 import { useStoredState } from '../useStoredState.js'
 import { findWordAt, sentenceOfWord, sentenceStartedBy } from './bookModel.js'
 import { paginate } from './paginate.js'
-import SettingsSheet from './SettingsSheet.jsx'
+import SettingsSheet, { SPEEDS } from './SettingsSheet.jsx'
+import VideoTouchLayer from './VideoTouchLayer.jsx'
 import './Reader.css'
 
 // 읽기 화면: 소리에 맞춰 단어 형광펜, 문장을 누르면 그 부분부터 다시 듣기
@@ -90,6 +91,18 @@ function Reader({ book, onBack }) {
     if (cur + 1 < book.sentences.length) playSentence(cur + 1)
   }
 
+  // 속도 표시를 누를 때마다 다음 속도로 (1.25 다음은 다시 0.5)
+  function cycleSpeed() {
+    const i = SPEEDS.findIndex((s) => s.value === speed)
+    setSpeed(SPEEDS[(i + 1) % SPEEDS.length].value)
+  }
+
+  // 영상 1.5초 꾹 → 지금 듣던 곳부터 유튜브에서 보기
+  function openInYouTube() {
+    playerRef.current?.pause()
+    window.open(`https://www.youtube.com/watch?v=${book.videoId}&t=${Math.floor(time)}s`, '_blank')
+  }
+
   const screen = screens?.[Math.min(pageIndex, screens.length - 1)]
   const isLast = screens ? pageIndex >= screens.length - 1 : true
 
@@ -130,6 +143,7 @@ function Reader({ book, onBack }) {
               <span className={playing ? 'bounce' : ''}>🎧</span>
             </div>
           )}
+          <VideoTouchLayer onDoubleTap={() => setVideoHidden(!videoHidden)} onLongPress={openInYouTube} />
         </div>
         <button className="corner-button settings" onClick={() => setSettingsOpen(true)} aria-label="설정">
           ⚙️
@@ -174,10 +188,10 @@ function Reader({ book, onBack }) {
         <button className="page-button" onClick={() => goToPage(pageIndex - 1)} disabled={pageIndex === 0} aria-label="이전 페이지">
           ◀
         </button>
-        <span className="page-count">
-          {screens ? `${pageIndex + 1} / ${screens.length}` : ''}
-          {speed !== 1 && <span className="speed-badge">×{speed}</span>}
-        </span>
+        <span className="page-count">{screens ? `${pageIndex + 1} / ${screens.length}` : ''}</span>
+        <button className={'speed-badge' + (speed !== 1 ? ' changed' : '')} onClick={cycleSpeed} aria-label="속도 바꾸기">
+          ×{speed}
+        </button>
         <button className="page-button" onClick={() => goToPage(pageIndex + 1)} disabled={isLast} aria-label="다음 페이지">
           ▶
         </button>

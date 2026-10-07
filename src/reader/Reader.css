@@ -15,35 +15,37 @@
     max(12px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
   max-width: 900px;
   margin: 0 auto;
+  position: relative;
 }
 
 @media (orientation: landscape) {
   .reader {
     max-width: none;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-    /* 위·아래 빈 줄(1fr)을 같게 둬서 왼쪽 묶음이 세로 가운데에 오게 */
-    grid-template-rows: 1fr auto auto auto 1fr;
-    grid-template-areas: '. text' 'top text' 'controls text' 'pager text' '. text';
+    grid-template-columns: minmax(0, 9fr) minmax(0, 11fr);
+    /* 왼쪽: 위(← + 영상) / 가운데(재생 버튼) / 아래(페이지 넘김) */
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 'top text' 'controls text' 'pager text';
     column-gap: 24px;
   }
 }
 
 /* 위쪽 묶음
    세로: [←      ⚙️]  첫 줄은 버튼만
-         [  영상    ]  그 아래 영상을 폭 가득
-   가로: [← 영상 ⚙️]  한 줄 (높이가 모자라서) */
+         [  영상    ]  약 0.4cm 띄우고, 그 아래 영상을 폭 가득
+   가로: [← 영상]      ←는 화면 왼쪽 위 끝, ⚙️는 화면 오른쪽 위 끝 */
 .reader-top {
   grid-area: top;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-areas: 'back . settings' 'video video video';
   align-items: start;
-  gap: 12px;
+  gap: 34px 12px;
 }
 
 @media (orientation: landscape) {
   .reader-top {
-    grid-template-areas: 'back video settings';
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: 'back video';
   }
 }
 
@@ -53,6 +55,15 @@
 
 .corner-button.settings {
   grid-area: settings;
+}
+
+@media (orientation: landscape) {
+  .corner-button.settings {
+    position: absolute;
+    top: max(12px, env(safe-area-inset-top));
+    right: max(16px, env(safe-area-inset-right));
+    z-index: 2;
+  }
 }
 
 .corner-button {
@@ -79,11 +90,12 @@
 @media (orientation: landscape) {
   .video-wrap {
     /* 가로 화면: 아래 버튼들 자리를 빼고 남는 높이만큼 */
-    max-width: calc((100dvh - 230px) * 16 / 9);
+    max-width: calc((100dvh - 190px) * 16 / 9);
   }
 }
 
 .yt-box {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 16px;
@@ -91,10 +103,51 @@
   background: #000;
 }
 
+/* 화질 개선: 유튜브는 플레이어가 작으면 낮은 화질을 고름.
+   실제로는 2배 크기로 만들고 절반으로 줄여 보여줘서 더 선명한 화질을 받음 */
 .yt-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+}
+
+/* 영상 위 투명 터치 판 (두 번 톡톡 / 1.5초 꾹) */
+.video-touch {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+}
+
+/* 꾹 누르는 동안 1.5초에 걸쳐 차오르는 원 */
+.press-ring {
+  width: 64px;
+  height: 64px;
+  transform: rotate(-90deg);
+}
+
+.press-ring circle {
+  fill: rgba(255, 255, 255, 0.7);
+  stroke: #ff0033;
+  stroke-width: 4;
+  stroke-dasharray: 101;
+  stroke-dashoffset: 101;
+  animation: fill-ring 1.5s linear forwards;
+}
+
+@keyframes fill-ring {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* 영상 덮개: 영상은 가리고 소리만 */
@@ -132,6 +185,13 @@
   font-family: var(--font-en);
   font-size: calc(1.8rem * var(--text-scale));
   line-height: 1.55;
+}
+
+@media (orientation: landscape) {
+  .page-text {
+    /* 오른쪽 위 ⚙️ 버튼과 겹치지 않게 */
+    padding-top: 60px;
+  }
 }
 
 /* 아이패드처럼 넓고 높은 화면에선 더 크게 (아이폰 가로 화면은 제외) */
@@ -239,12 +299,34 @@
   font-family: var(--font-en);
 }
 
+/* 속도 표시: 누를 때마다 다음 속도로 */
 .speed-badge {
-  margin-left: 8px;
-  padding: 2px 8px;
-  border-radius: 10px;
+  min-width: 64px;
+  height: 44px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 22px;
   background: var(--card);
-  font-size: 0.85em;
+  color: var(--ink-soft);
+  font-family: var(--font-en);
+  box-shadow: 0 3px 0 rgba(59, 58, 90, 0.15);
+}
+
+/* 보통 속도(×1)가 아닐 때는 눈에 띄게 */
+.speed-badge.changed {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.speed-badge:active {
+  transform: translateY(2px);
+}
+
+.sheet-tip {
+  margin: 16px 4px 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 /* ───────── ⚙️ 설정 창 ───────── */
@@ -327,6 +409,11 @@
 
   .choice {
     min-height: 52px;
+  }
+
+  .sheet-tip {
+    grid-column: 1 / -1;
+    margin: 0 4px;
   }
 
   .sheet-close {
