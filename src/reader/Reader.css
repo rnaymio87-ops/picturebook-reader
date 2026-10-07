@@ -1,5 +1,7 @@
 .reader {
-  min-height: 100dvh;
+  /* 화면 높이에 딱 맞춤 (글이 넘치면 스크롤 대신 다음 페이지로) */
+  height: 100dvh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -8,14 +10,15 @@
   margin: 0 auto;
 }
 
-/* 위쪽: 뒤로 버튼 + 작은 영상 */
+/* 위쪽: 뒤로 버튼 + 작은 영상 + 영상 가리기 버튼 */
 .reader-top {
+  flex: none;
   display: flex;
   align-items: flex-start;
   gap: 12px;
 }
 
-.back-button {
+.corner-button {
   flex: none;
   width: 56px;
   height: 56px;
@@ -27,9 +30,15 @@
 }
 
 /* 유튜브 플레이어: 16:9 상자. 글자를 위해 화면 높이의 30%까지만 */
-.yt-box {
+.video-wrap {
+  position: relative;
   flex: 1;
   max-width: calc(30dvh * 16 / 9);
+  margin: 0 auto;
+}
+
+.yt-box {
+  width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 16px;
   overflow: hidden;
@@ -42,9 +51,33 @@
   height: 100%;
 }
 
+/* 영상 덮개: 영상은 가리고 소리만 */
+.video-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffe58a, #ffc2d4);
+  font-size: 2.6rem;
+}
+
+.video-cover .bounce {
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 /* 본문: 큰 영어 글씨 */
 .page-text {
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,6 +92,16 @@
   .page-text {
     font-size: 2.2rem;
   }
+}
+
+/* 페이지 나누기 계산용: 같은 글꼴·폭으로 보이지 않게 */
+.page-text.measure-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .sentence {

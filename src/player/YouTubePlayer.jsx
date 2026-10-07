@@ -17,7 +17,7 @@ function loadYouTubeApi() {
 
 /**
  * 유튜브 플레이어 감싸기.
- * - onTime(초): 재생 중 1초에 약 10번 "지금 몇 초인지" 알려줌 (형광펜 맞추기에 사용)
+ * - onTime(초): 재생 중 화면이 바뀔 때마다(1초에 약 60번) "지금 몇 초인지" 알려줌 (형광펜 맞추기에 사용)
  * - onPlayingChange(true/false): 재생/멈춤 상태가 바뀔 때
  * - ref로 play(), pause(), seekTo(초), getTime() 사용 가능
  */
@@ -42,7 +42,20 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
 
   useEffect(() => {
     let cancelled = false
-    let timer = null
+    let frame = null
+
+    // 유튜브가 알려주는 시간은 띄엄띄엄(약 0.1~0.25초 간격) 바뀜.
+    // 마지막으로 바뀐 순간(base)부터 흐른 시간을 더해서 매 화면 갱신마다 부드러운 시간을 계산.
+    let base = null // { t: 유튜브가 알려준 시간, at: 그때의 시계 }
+    function tick() {
+      const player = playerRef.current
+      const now = performance.now()
+      const reported = player.getCurrentTime()
+      if (!base || reported !== base.t) base = { t: reported, at: now }
+      const rate = player.getPlaybackRate?.() || 1
+      onTimeRef.current?.(base.t + ((now - base.at) / 1000) * rate)
+      frame = requestAnimationFrame(tick)
+    }
 
     loadYouTubeApi().then((YT) => {
       if (cancelled) return
@@ -61,12 +74,9 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
           onStateChange: (e) => {
             const playing = e.data === YT.PlayerState.PLAYING
             onPlayingRef.current?.(playing)
-            clearInterval(timer)
-            if (playing) {
-              timer = setInterval(() => {
-                onTimeRef.current?.(playerRef.current.getCurrentTime())
-              }, 100)
-            }
+            cancelAnimationFrame(frame)
+            base = null
+            if (playing) frame = requestAnimationFrame(tick)
           },
         },
       })
@@ -74,7 +84,7 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
 
     return () => {
       cancelled = true
-      clearInterval(timer)
+      cancelAnimationFrame(frame)
       playerRef.current?.destroy()
       playerRef.current = null
     }
