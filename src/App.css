@@ -83,3 +83,13 @@
   color: var(--ink-soft);
   opacity: 0.6;
 }
+
+/* 임시 영상 테스트 버튼 */
+.lab-link {
+  padding: 10px 18px;
+  border: 2px dashed var(--ink-soft);
+  border-radius: 16px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}

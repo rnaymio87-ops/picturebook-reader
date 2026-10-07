@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Reader from './reader/Reader.jsx'
 import sampleBook from './data/sample-brown-bear.json'
+import VideoLab from './lab/VideoLab.jsx'
 import './App.css'
 
 // 첫 화면. 버튼들은 단계마다 하나씩 살아납니다.
@@ -9,6 +10,10 @@ function App() {
 
   if (screen === 'sample') {
     return <Reader book={sampleBook} onBack={() => setScreen('home')} />
+  }
+
+  if (screen === 'lab') {
+    return <VideoLab onBack={() => setScreen('home')} />
   }
 
   return (
@@ -34,6 +39,10 @@ function App() {
         </button>
       </nav>
 
+      {/* 임시: 아이폰 가로 영상 잘림 문제 해결용 테스트 화면 (해결 후 삭제) */}
+      <button className="lab-link" onClick={() => setScreen('lab')}>
+        🧪 영상 테스트
+      </button>
       <p className="app-version">버전 {__APP_VERSION__}</p>
     </main>
   )
