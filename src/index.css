@@ -19,7 +19,10 @@
 html,
 body {
   margin: 0;
-  background: var(--bg);
+  /* 연한 물방울 무늬 배경 */
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(255, 143, 177, 0.13) 2px, transparent 2.5px);
+  background-size: 28px 28px;
   color: var(--ink);
   font-family: var(--font-ko);
   font-size: 20px;

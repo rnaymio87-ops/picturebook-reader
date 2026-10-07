@@ -6,6 +6,17 @@ import { findWordAt, sentenceOfWord, sentenceStartedBy } from './bookModel.js'
 import { paginate } from './paginate.js'
 import SettingsSheet, { SPEEDS } from './SettingsSheet.jsx'
 import VideoTouchLayer from './VideoTouchLayer.jsx'
+import {
+  BackIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  HeadphonesIcon,
+  NextSentenceIcon,
+  PauseIcon,
+  PlayIcon,
+  PrevSentenceIcon,
+  SettingsIcon,
+} from './icons.jsx'
 import './Reader.css'
 
 // 읽기 화면: 소리에 맞춰 단어 형광펜, 문장을 누르면 그 부분부터 다시 듣기
@@ -33,6 +44,7 @@ function Reader({ book, onBack }) {
     }
   }, [book.videoId])
 
+  const bookEnd = book.words.at(-1).end
   const wordIndex = findWordAt(book.words, time)
   const sentenceIndex = sentenceOfWord(book.sentences, wordIndex)
 
@@ -138,7 +150,7 @@ function Reader({ book, onBack }) {
     <main className="reader" style={{ '--text-scale': textSize, '--video-ratio': videoRatio }}>
       <div className="reader-top">
         <button className="corner-button back" onClick={onBack} aria-label="처음으로">
-          ←
+          <BackIcon />
         </button>
         <div className="video-wrap">
           <YouTubePlayer
@@ -151,13 +163,19 @@ function Reader({ book, onBack }) {
           {/* 영상만 가리는 덮개 (소리는 계속 나옴) */}
           {videoHidden && (
             <div className="video-cover" aria-hidden="true">
-              <span className={playing ? 'bounce' : ''}>🎧</span>
+              <span className={playing ? 'bounce' : ''}>
+                <HeadphonesIcon />
+              </span>
             </div>
           )}
+          {/* 책 전체 중 어디까지 들었는지 (영상 아래 가장자리의 얇은 막대) */}
+          <div className="book-progress" aria-hidden="true">
+            <div style={{ width: `${Math.min(100, (time / bookEnd) * 100)}%` }} />
+          </div>
           <VideoTouchLayer onDoubleTap={() => setVideoHidden(!videoHidden)} onLongPress={openInYouTube} />
         </div>
         <button className="corner-button settings" onClick={() => setSettingsOpen(true)} aria-label="설정">
-          ⚙️
+          <SettingsIcon />
         </button>
       </div>
 
@@ -185,26 +203,26 @@ function Reader({ book, onBack }) {
 
       <nav className="reader-controls">
         <button className="step-button" onClick={prevSentence} aria-label="이전 문장">
-          ⏮
+          <PrevSentenceIcon />
         </button>
         <button className="play-button" onClick={togglePlay} aria-label={playing ? '멈춤' : '듣기'}>
-          {playing ? '⏸' : '▶'}
+          {playing ? <PauseIcon /> : <PlayIcon />}
         </button>
         <button className="step-button" onClick={nextSentence} aria-label="다음 문장">
-          ⏭
+          <NextSentenceIcon />
         </button>
       </nav>
 
       <nav className="page-bar">
         <button className="page-button" onClick={() => goToPage(pageIndex - 1)} disabled={pageIndex === 0} aria-label="이전 페이지">
-          ◀
+          <ChevronLeftIcon />
         </button>
         <span className="page-count">{screens ? `${pageIndex + 1} / ${screens.length}` : ''}</span>
         <button className={'speed-badge' + (speed !== 1 ? ' changed' : '')} onClick={cycleSpeed} aria-label="속도 바꾸기">
           ×{speed}
         </button>
         <button className="page-button" onClick={() => goToPage(pageIndex + 1)} disabled={isLast} aria-label="다음 페이지">
-          ▶
+          <ChevronRightIcon />
         </button>
       </nav>
 

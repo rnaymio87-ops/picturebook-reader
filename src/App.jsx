@@ -33,6 +33,8 @@ function App() {
           새 책 추가
         </button>
       </nav>
+
+      <p className="app-version">버전 {__APP_VERSION__}</p>
     </main>
   )
 }

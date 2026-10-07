@@ -75,3 +75,11 @@
   background: var(--pink);
 }
 
+
+/* 첫 화면 아래 작은 버전 표시 (휴대폰이 최신 버전인지 확인용) */
+.app-version {
+  margin: 0;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
