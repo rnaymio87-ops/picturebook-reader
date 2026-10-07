@@ -1,0 +1,1375 @@
+{
+ "id": "sample-brown-bear",
+ "title": "Brown Bear, Brown Bear, What Do You See?",
+ "author": "Bill Martin Jr. & Eric Carle",
+ "videoId": "Mc9My7TnxFU",
+ "words": [
+  {
+   "text": "Brown",
+   "start": 0.48,
+   "end": 1.14
+  },
+  {
+   "text": "Bear,",
+   "start": 1.14,
+   "end": 1.38
+  },
+  {
+   "text": "Brown",
+   "start": 1.38,
+   "end": 1.86
+  },
+  {
+   "text": "Bear,",
+   "start": 1.86,
+   "end": 2.159
+  },
+  {
+   "text": "what",
+   "start": 2.159,
+   "end": 3
+  },
+  {
+   "text": "do",
+   "start": 3,
+   "end": 3.24
+  },
+  {
+   "text": "you",
+   "start": 3.24,
+   "end": 3.419
+  },
+  {
+   "text": "see?",
+   "start": 3.419,
+   "end": 4.44
+  },
+  {
+   "text": "By",
+   "start": 4.44,
+   "end": 5.1
+  },
+  {
+   "text": "Bill",
+   "start": 5.1,
+   "end": 5.339
+  },
+  {
+   "text": "Martin",
+   "start": 5.339,
+   "end": 5.58
+  },
+  {
+   "text": "Jr.",
+   "start": 5.58,
+   "end": 6.18
+  },
+  {
+   "text": "and",
+   "start": 6.18,
+   "end": 6.66
+  },
+  {
+   "text": "Eric",
+   "start": 6.66,
+   "end": 6.899
+  },
+  {
+   "text": "Carle",
+   "start": 6.899,
+   "end": 8.099
+  },
+  {
+   "text": "Brown",
+   "start": 12.059,
+   "end": 12.599
+  },
+  {
+   "text": "Bear,",
+   "start": 12.599,
+   "end": 12.84
+  },
+  {
+   "text": "Brown",
+   "start": 12.84,
+   "end": 13.259
+  },
+  {
+   "text": "Bear,",
+   "start": 13.259,
+   "end": 13.559
+  },
+  {
+   "text": "what",
+   "start": 13.559,
+   "end": 14.4
+  },
+  {
+   "text": "do",
+   "start": 14.4,
+   "end": 14.58
+  },
+  {
+   "text": "you",
+   "start": 14.58,
+   "end": 14.759
+  },
+  {
+   "text": "see?",
+   "start": 14.759,
+   "end": 15.959
+  },
+  {
+   "text": "I",
+   "start": 16.52,
+   "end": 17.52
+  },
+  {
+   "text": "see",
+   "start": 17.52,
+   "end": 17.699
+  },
+  {
+   "text": "a",
+   "start": 17.699,
+   "end": 17.94
+  },
+  {
+   "text": "red",
+   "start": 17.94,
+   "end": 18.06
+  },
+  {
+   "text": "bird",
+   "start": 18.06,
+   "end": 18.3
+  },
+  {
+   "text": "looking",
+   "start": 18.3,
+   "end": 18.779
+  },
+  {
+   "text": "at",
+   "start": 18.779,
+   "end": 19.199
+  },
+  {
+   "text": "me.",
+   "start": 19.199,
+   "end": 20.399
+  },
+  {
+   "text": "Red",
+   "start": 24.84,
+   "end": 25.32
+  },
+  {
+   "text": "Bird,",
+   "start": 25.32,
+   "end": 25.56
+  },
+  {
+   "text": "Red",
+   "start": 25.56,
+   "end": 25.92
+  },
+  {
+   "text": "Bird,",
+   "start": 25.92,
+   "end": 26.279
+  },
+  {
+   "text": "what",
+   "start": 26.279,
+   "end": 27.06
+  },
+  {
+   "text": "do",
+   "start": 27.06,
+   "end": 27.3
+  },
+  {
+   "text": "you",
+   "start": 27.3,
+   "end": 27.48
+  },
+  {
+   "text": "see?",
+   "start": 27.48,
+   "end": 28.68
+  },
+  {
+   "text": "I",
+   "start": 30.66,
+   "end": 31.14
+  },
+  {
+   "text": "see",
+   "start": 31.14,
+   "end": 31.32
+  },
+  {
+   "text": "a",
+   "start": 31.32,
+   "end": 31.56
+  },
+  {
+   "text": "yellow",
+   "start": 31.56,
+   "end": 31.679
+  },
+  {
+   "text": "duck",
+   "start": 31.679,
+   "end": 32.22
+  },
+  {
+   "text": "looking",
+   "start": 32.22,
+   "end": 32.7
+  },
+  {
+   "text": "at",
+   "start": 32.7,
+   "end": 33.059
+  },
+  {
+   "text": "me.",
+   "start": 33.059,
+   "end": 34.259
+  },
+  {
+   "text": "Yellow",
+   "start": 36.8,
+   "end": 37.8
+  },
+  {
+   "text": "Duck,",
+   "start": 37.8,
+   "end": 38.34
+  },
+  {
+   "text": "Yellow",
+   "start": 38.34,
+   "end": 38.64
+  },
+  {
+   "text": "Duck,",
+   "start": 38.64,
+   "end": 39.18
+  },
+  {
+   "text": "what",
+   "start": 39.18,
+   "end": 39.96
+  },
+  {
+   "text": "do",
+   "start": 39.96,
+   "end": 40.14
+  },
+  {
+   "text": "you",
+   "start": 40.14,
+   "end": 40.32
+  },
+  {
+   "text": "see?",
+   "start": 40.32,
+   "end": 41.52
+  },
+  {
+   "text": "I",
+   "start": 42.62,
+   "end": 43.62
+  },
+  {
+   "text": "see",
+   "start": 43.62,
+   "end": 43.86
+  },
+  {
+   "text": "a",
+   "start": 43.86,
+   "end": 44.1
+  },
+  {
+   "text": "blue",
+   "start": 44.1,
+   "end": 44.28
+  },
+  {
+   "text": "horse",
+   "start": 44.28,
+   "end": 44.52
+  },
+  {
+   "text": "looking",
+   "start": 44.52,
+   "end": 45.059
+  },
+  {
+   "text": "at",
+   "start": 45.059,
+   "end": 45.42
+  },
+  {
+   "text": "me.",
+   "start": 45.42,
+   "end": 46.62
+  },
+  {
+   "text": "Blue",
+   "start": 49.039,
+   "end": 50.039
+  },
+  {
+   "text": "Horse,",
+   "start": 50.039,
+   "end": 50.28
+  },
+  {
+   "text": "Blue",
+   "start": 50.28,
+   "end": 50.76
+  },
+  {
+   "text": "Horse,",
+   "start": 50.76,
+   "end": 51.059
+  },
+  {
+   "text": "what",
+   "start": 51.059,
+   "end": 51.96
+  },
+  {
+   "text": "do",
+   "start": 51.96,
+   "end": 52.14
+  },
+  {
+   "text": "you",
+   "start": 52.14,
+   "end": 52.32
+  },
+  {
+   "text": "see?",
+   "start": 52.32,
+   "end": 53.52
+  },
+  {
+   "text": "I",
+   "start": 54.14,
+   "end": 55.14
+  },
+  {
+   "text": "see",
+   "start": 55.14,
+   "end": 55.32
+  },
+  {
+   "text": "a",
+   "start": 55.32,
+   "end": 55.559
+  },
+  {
+   "text": "green",
+   "start": 55.559,
+   "end": 55.739
+  },
+  {
+   "text": "frog",
+   "start": 55.739,
+   "end": 56.219
+  },
+  {
+   "text": "looking",
+   "start": 56.219,
+   "end": 56.52
+  },
+  {
+   "text": "at",
+   "start": 56.52,
+   "end": 56.879
+  },
+  {
+   "text": "me.",
+   "start": 56.879,
+   "end": 58.079
+  },
+  {
+   "text": "Green",
+   "start": 62.42,
+   "end": 63.42
+  },
+  {
+   "text": "Frog,",
+   "start": 63.42,
+   "end": 63.84
+  },
+  {
+   "text": "Green",
+   "start": 63.84,
+   "end": 64.019
+  },
+  {
+   "text": "Frog,",
+   "start": 64.019,
+   "end": 64.5
+  },
+  {
+   "text": "what",
+   "start": 64.5,
+   "end": 64.979
+  },
+  {
+   "text": "do",
+   "start": 64.979,
+   "end": 65.159
+  },
+  {
+   "text": "you",
+   "start": 65.159,
+   "end": 65.339
+  },
+  {
+   "text": "see?",
+   "start": 65.339,
+   "end": 66.539
+  },
+  {
+   "text": "I",
+   "start": 68.1,
+   "end": 68.76
+  },
+  {
+   "text": "see",
+   "start": 68.76,
+   "end": 69
+  },
+  {
+   "text": "a",
+   "start": 69,
+   "end": 69.18
+  },
+  {
+   "text": "purple",
+   "start": 69.18,
+   "end": 69.36
+  },
+  {
+   "text": "cat",
+   "start": 69.36,
+   "end": 69.72
+  },
+  {
+   "text": "looking",
+   "start": 69.72,
+   "end": 70.08
+  },
+  {
+   "text": "at",
+   "start": 70.08,
+   "end": 70.439
+  },
+  {
+   "text": "me.",
+   "start": 70.439,
+   "end": 71.639
+  },
+  {
+   "text": "Purple",
+   "start": 74.22,
+   "end": 74.49
+  },
+  {
+   "text": "Cat,",
+   "start": 74.49,
+   "end": 74.76
+  },
+  {
+   "text": "Purple",
+   "start": 74.76,
+   "end": 75.119
+  },
+  {
+   "text": "Cat,",
+   "start": 75.119,
+   "end": 75.479
+  },
+  {
+   "text": "what",
+   "start": 75.479,
+   "end": 76.14
+  },
+  {
+   "text": "do",
+   "start": 76.14,
+   "end": 76.26
+  },
+  {
+   "text": "you",
+   "start": 76.26,
+   "end": 76.439
+  },
+  {
+   "text": "see?",
+   "start": 76.439,
+   "end": 77.639
+  },
+  {
+   "text": "I",
+   "start": 79.86,
+   "end": 80.46
+  },
+  {
+   "text": "see",
+   "start": 80.46,
+   "end": 80.64
+  },
+  {
+   "text": "a",
+   "start": 80.64,
+   "end": 80.88
+  },
+  {
+   "text": "white",
+   "start": 80.88,
+   "end": 81
+  },
+  {
+   "text": "dog",
+   "start": 81,
+   "end": 81.299
+  },
+  {
+   "text": "looking",
+   "start": 81.299,
+   "end": 81.659
+  },
+  {
+   "text": "at",
+   "start": 81.659,
+   "end": 82.02
+  },
+  {
+   "text": "me.",
+   "start": 82.02,
+   "end": 83.22
+  },
+  {
+   "text": "White",
+   "start": 86.52,
+   "end": 87
+  },
+  {
+   "text": "Dog,",
+   "start": 87,
+   "end": 87.24
+  },
+  {
+   "text": "White",
+   "start": 87.24,
+   "end": 87.659
+  },
+  {
+   "text": "Dog,",
+   "start": 87.659,
+   "end": 87.96
+  },
+  {
+   "text": "what",
+   "start": 87.96,
+   "end": 88.56
+  },
+  {
+   "text": "do",
+   "start": 88.56,
+   "end": 88.799
+  },
+  {
+   "text": "you",
+   "start": 88.799,
+   "end": 88.979
+  },
+  {
+   "text": "see?",
+   "start": 88.979,
+   "end": 90.179
+  },
+  {
+   "text": "I",
+   "start": 92.04,
+   "end": 92.58
+  },
+  {
+   "text": "see",
+   "start": 92.58,
+   "end": 92.7
+  },
+  {
+   "text": "a",
+   "start": 92.7,
+   "end": 92.939
+  },
+  {
+   "text": "black",
+   "start": 92.939,
+   "end": 93.18
+  },
+  {
+   "text": "sheep",
+   "start": 93.18,
+   "end": 93.659
+  },
+  {
+   "text": "looking",
+   "start": 93.659,
+   "end": 93.9
+  },
+  {
+   "text": "at",
+   "start": 93.9,
+   "end": 94.259
+  },
+  {
+   "text": "me.",
+   "start": 94.259,
+   "end": 95.459
+  },
+  {
+   "text": "Black",
+   "start": 97.34,
+   "end": 98.34
+  },
+  {
+   "text": "Sheep,",
+   "start": 98.34,
+   "end": 98.82
+  },
+  {
+   "text": "Black",
+   "start": 98.82,
+   "end": 99.119
+  },
+  {
+   "text": "Sheep,",
+   "start": 99.119,
+   "end": 99.6
+  },
+  {
+   "text": "what",
+   "start": 99.6,
+   "end": 100.079
+  },
+  {
+   "text": "do",
+   "start": 100.079,
+   "end": 100.259
+  },
+  {
+   "text": "you",
+   "start": 100.259,
+   "end": 100.439
+  },
+  {
+   "text": "see?",
+   "start": 100.439,
+   "end": 101.639
+  },
+  {
+   "text": "I",
+   "start": 103.7,
+   "end": 104.7
+  },
+  {
+   "text": "see",
+   "start": 104.7,
+   "end": 104.88
+  },
+  {
+   "text": "a",
+   "start": 104.88,
+   "end": 105.06
+  },
+  {
+   "text": "goldfish",
+   "start": 105.06,
+   "end": 105.479
+  },
+  {
+   "text": "looking",
+   "start": 105.479,
+   "end": 105.84
+  },
+  {
+   "text": "at",
+   "start": 105.84,
+   "end": 106.2
+  },
+  {
+   "text": "me.",
+   "start": 106.2,
+   "end": 107.31
+  },
+  {
+   "text": "Goldfish,",
+   "start": 108.54,
+   "end": 109.38
+  },
+  {
+   "text": "Goldfish,",
+   "start": 109.38,
+   "end": 109.92
+  },
+  {
+   "text": "what",
+   "start": 109.92,
+   "end": 110.52
+  },
+  {
+   "text": "do",
+   "start": 110.52,
+   "end": 110.7
+  },
+  {
+   "text": "you",
+   "start": 110.7,
+   "end": 110.88
+  },
+  {
+   "text": "see?",
+   "start": 110.88,
+   "end": 112.08
+  },
+  {
+   "text": "I",
+   "start": 114.119,
+   "end": 114.72
+  },
+  {
+   "text": "see",
+   "start": 114.72,
+   "end": 114.899
+  },
+  {
+   "text": "a",
+   "start": 114.899,
+   "end": 115.079
+  },
+  {
+   "text": "teacher",
+   "start": 115.079,
+   "end": 115.439
+  },
+  {
+   "text": "looking",
+   "start": 115.439,
+   "end": 115.74
+  },
+  {
+   "text": "at",
+   "start": 115.74,
+   "end": 116.1
+  },
+  {
+   "text": "me.",
+   "start": 116.1,
+   "end": 117.3
+  },
+  {
+   "text": "Teacher,",
+   "start": 120.72,
+   "end": 121.14
+  },
+  {
+   "text": "Teacher,",
+   "start": 121.14,
+   "end": 121.74
+  },
+  {
+   "text": "what",
+   "start": 121.74,
+   "end": 122.22
+  },
+  {
+   "text": "do",
+   "start": 122.22,
+   "end": 122.399
+  },
+  {
+   "text": "you",
+   "start": 122.399,
+   "end": 122.579
+  },
+  {
+   "text": "see?",
+   "start": 122.579,
+   "end": 123.779
+  },
+  {
+   "text": "I",
+   "start": 125.88,
+   "end": 126.36
+  },
+  {
+   "text": "see",
+   "start": 126.36,
+   "end": 126.6
+  },
+  {
+   "text": "children",
+   "start": 126.6,
+   "end": 126.96
+  },
+  {
+   "text": "looking",
+   "start": 126.96,
+   "end": 127.619
+  },
+  {
+   "text": "at",
+   "start": 127.619,
+   "end": 127.979
+  },
+  {
+   "text": "me.",
+   "start": 127.979,
+   "end": 129.179
+  },
+  {
+   "text": "Children,",
+   "start": 133.44,
+   "end": 134.22
+  },
+  {
+   "text": "Children,",
+   "start": 134.22,
+   "end": 134.819
+  },
+  {
+   "text": "what",
+   "start": 134.819,
+   "end": 135.66
+  },
+  {
+   "text": "do",
+   "start": 135.66,
+   "end": 135.84
+  },
+  {
+   "text": "you",
+   "start": 135.84,
+   "end": 135.959
+  },
+  {
+   "text": "see?",
+   "start": 135.959,
+   "end": 137.159
+  },
+  {
+   "text": "We",
+   "start": 139.319,
+   "end": 139.98
+  },
+  {
+   "text": "see",
+   "start": 139.98,
+   "end": 140.16
+  },
+  {
+   "text": "a",
+   "start": 140.16,
+   "end": 140.4
+  },
+  {
+   "text": "brown",
+   "start": 140.4,
+   "end": 140.58
+  },
+  {
+   "text": "bear,",
+   "start": 140.58,
+   "end": 140.819
+  },
+  {
+   "text": "a",
+   "start": 140.819,
+   "end": 141.42
+  },
+  {
+   "text": "red",
+   "start": 141.42,
+   "end": 141.66
+  },
+  {
+   "text": "bird,",
+   "start": 141.66,
+   "end": 142.68
+  },
+  {
+   "text": "a",
+   "start": 142.68,
+   "end": 143.16
+  },
+  {
+   "text": "yellow",
+   "start": 143.16,
+   "end": 143.459
+  },
+  {
+   "text": "duck,",
+   "start": 143.459,
+   "end": 144.659
+  },
+  {
+   "text": "a",
+   "start": 145.459,
+   "end": 146.459
+  },
+  {
+   "text": "blue",
+   "start": 146.459,
+   "end": 146.7
+  },
+  {
+   "text": "horse,",
+   "start": 146.7,
+   "end": 147.9
+  },
+  {
+   "text": "a",
+   "start": 148.58,
+   "end": 149.58
+  },
+  {
+   "text": "green",
+   "start": 149.58,
+   "end": 149.7
+  },
+  {
+   "text": "frog,",
+   "start": 149.7,
+   "end": 150.9
+  },
+  {
+   "text": "a",
+   "start": 151.92,
+   "end": 152.459
+  },
+  {
+   "text": "purple",
+   "start": 152.459,
+   "end": 152.58
+  },
+  {
+   "text": "cat,",
+   "start": 152.58,
+   "end": 153.78
+  },
+  {
+   "text": "a",
+   "start": 155.04,
+   "end": 155.58
+  },
+  {
+   "text": "white",
+   "start": 155.58,
+   "end": 155.76
+  },
+  {
+   "text": "dog,",
+   "start": 155.76,
+   "end": 156.96
+  },
+  {
+   "text": "a",
+   "start": 157.459,
+   "end": 158.459
+  },
+  {
+   "text": "black",
+   "start": 158.459,
+   "end": 158.64
+  },
+  {
+   "text": "sheep,",
+   "start": 158.64,
+   "end": 159.84
+  },
+  {
+   "text": "a",
+   "start": 161.099,
+   "end": 161.76
+  },
+  {
+   "text": "goldfish,",
+   "start": 161.76,
+   "end": 162.96
+  },
+  {
+   "text": "and",
+   "start": 165.36,
+   "end": 166.019
+  },
+  {
+   "text": "a",
+   "start": 166.019,
+   "end": 166.2
+  },
+  {
+   "text": "teacher",
+   "start": 166.2,
+   "end": 166.56
+  },
+  {
+   "text": "looking",
+   "start": 166.56,
+   "end": 166.8
+  },
+  {
+   "text": "at",
+   "start": 166.8,
+   "end": 167.16
+  },
+  {
+   "text": "us.",
+   "start": 167.16,
+   "end": 167.34
+  },
+  {
+   "text": "That's",
+   "start": 167.34,
+   "end": 168.06
+  },
+  {
+   "text": "what",
+   "start": 168.06,
+   "end": 168.42
+  },
+  {
+   "text": "we",
+   "start": 168.42,
+   "end": 168.66
+  },
+  {
+   "text": "see.",
+   "start": 168.66,
+   "end": 169.86
+  }
+ ],
+ "sentences": [
+  {
+   "first": 0,
+   "last": 7,
+   "ko": "갈색 곰아, 갈색 곰아, 무엇이 보이니?",
+   "vocab": [
+    {
+     "word": "brown",
+     "meaning": "갈색"
+    },
+    {
+     "word": "bear",
+     "meaning": "곰"
+    },
+    {
+     "word": "see",
+     "meaning": "보다"
+    }
+   ]
+  },
+  {
+   "first": 8,
+   "last": 14,
+   "ko": "빌 마틴 주니어 글, 에릭 칼 그림",
+   "vocab": []
+  },
+  {
+   "first": 15,
+   "last": 22,
+   "ko": "갈색 곰아, 갈색 곰아, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 23,
+   "last": 30,
+   "ko": "빨간 새가 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "red",
+     "meaning": "빨간색"
+    },
+    {
+     "word": "bird",
+     "meaning": "새"
+    },
+    {
+     "word": "looking at",
+     "meaning": "~을 바라보는"
+    }
+   ]
+  },
+  {
+   "first": 31,
+   "last": 38,
+   "ko": "빨간 새야, 빨간 새야, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 39,
+   "last": 46,
+   "ko": "노란 오리가 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "yellow",
+     "meaning": "노란색"
+    },
+    {
+     "word": "duck",
+     "meaning": "오리"
+    }
+   ]
+  },
+  {
+   "first": 47,
+   "last": 54,
+   "ko": "노란 오리야, 노란 오리야, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 55,
+   "last": 62,
+   "ko": "파란 말이 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "blue",
+     "meaning": "파란색"
+    },
+    {
+     "word": "horse",
+     "meaning": "말"
+    }
+   ]
+  },
+  {
+   "first": 63,
+   "last": 70,
+   "ko": "파란 말아, 파란 말아, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 71,
+   "last": 78,
+   "ko": "초록 개구리가 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "green",
+     "meaning": "초록색"
+    },
+    {
+     "word": "frog",
+     "meaning": "개구리"
+    }
+   ]
+  },
+  {
+   "first": 79,
+   "last": 86,
+   "ko": "초록 개구리야, 초록 개구리야, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 87,
+   "last": 94,
+   "ko": "보라 고양이가 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "purple",
+     "meaning": "보라색"
+    },
+    {
+     "word": "cat",
+     "meaning": "고양이"
+    }
+   ]
+  },
+  {
+   "first": 95,
+   "last": 102,
+   "ko": "보라 고양이야, 보라 고양이야, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 103,
+   "last": 110,
+   "ko": "하얀 개가 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "white",
+     "meaning": "하얀색"
+    },
+    {
+     "word": "dog",
+     "meaning": "개"
+    }
+   ]
+  },
+  {
+   "first": 111,
+   "last": 118,
+   "ko": "하얀 개야, 하얀 개야, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 119,
+   "last": 126,
+   "ko": "검은 양이 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "black",
+     "meaning": "검은색"
+    },
+    {
+     "word": "sheep",
+     "meaning": "양"
+    }
+   ]
+  },
+  {
+   "first": 127,
+   "last": 134,
+   "ko": "검은 양아, 검은 양아, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 135,
+   "last": 141,
+   "ko": "금붕어가 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "goldfish",
+     "meaning": "금붕어"
+    }
+   ]
+  },
+  {
+   "first": 142,
+   "last": 147,
+   "ko": "금붕어야, 금붕어야, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 148,
+   "last": 154,
+   "ko": "선생님이 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "teacher",
+     "meaning": "선생님"
+    }
+   ]
+  },
+  {
+   "first": 155,
+   "last": 160,
+   "ko": "선생님, 선생님, 무엇이 보이세요?",
+   "vocab": []
+  },
+  {
+   "first": 161,
+   "last": 166,
+   "ko": "아이들이 나를 보고 있는 게 보여.",
+   "vocab": [
+    {
+     "word": "children",
+     "meaning": "아이들 (child의 여러 명)"
+    }
+   ]
+  },
+  {
+   "first": 167,
+   "last": 172,
+   "ko": "얘들아, 얘들아, 무엇이 보이니?",
+   "vocab": []
+  },
+  {
+   "first": 173,
+   "last": 206,
+   "ko": "갈색 곰, 빨간 새, 노란 오리, 파란 말, 초록 개구리, 보라 고양이, 하얀 개, 검은 양, 금붕어, 그리고 선생님이 우리를 보고 있는 게 보여요.",
+   "vocab": [
+    {
+     "word": "we",
+     "meaning": "우리"
+    },
+    {
+     "word": "us",
+     "meaning": "우리를"
+    }
+   ]
+  },
+  {
+   "first": 207,
+   "last": 210,
+   "ko": "그게 우리가 보는 거예요.",
+   "vocab": [
+    {
+     "word": "that's",
+     "meaning": "that is (그것은 ~이다)의 줄임말"
+    }
+   ]
+  }
+ ],
+ "pages": [
+  [
+   0,
+   1
+  ],
+  [
+   2,
+   3
+  ],
+  [
+   4,
+   5
+  ],
+  [
+   6,
+   7
+  ],
+  [
+   8,
+   9
+  ],
+  [
+   10,
+   11
+  ],
+  [
+   12,
+   13
+  ],
+  [
+   14,
+   15
+  ],
+  [
+   16,
+   17
+  ],
+  [
+   18,
+   19
+  ],
+  [
+   20,
+   21
+  ],
+  [
+   22,
+   23,
+   24
+  ]
+ ]
+}

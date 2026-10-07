@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import PlayerTest from './reader/PlayerTest.jsx'
+import Reader from './reader/Reader.jsx'
+import sampleBook from './data/sample-brown-bear.json'
 import './App.css'
 
 // 첫 화면. 버튼들은 단계마다 하나씩 살아납니다.
 function App() {
   const [screen, setScreen] = useState('home')
 
-  if (screen === 'player-test') {
-    return <PlayerTest onBack={() => setScreen('home')} />
+  if (screen === 'sample') {
+    return <Reader book={sampleBook} onBack={() => setScreen('home')} />
   }
 
   return (
@@ -19,9 +20,9 @@ function App() {
       </header>
 
       <nav className="home-buttons">
-        <button className="big-button blue" onClick={() => setScreen('player-test')}>
-          <span className="big-button-emoji">🎧</span>
-          연습 듣기
+        <button className="big-button blue" onClick={() => setScreen('sample')}>
+          <span className="big-button-emoji">🐻</span>
+          Brown Bear 읽기
         </button>
         <button className="big-button yellow" disabled>
           <span className="big-button-emoji">📚</span>
