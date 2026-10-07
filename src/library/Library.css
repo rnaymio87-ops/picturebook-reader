@@ -1,0 +1,107 @@
+.library {
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: var(--app-h, 100dvh);
+  padding: max(12px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
+}
+
+.library-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.library-top h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.library .corner-button {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 1.5rem;
+  box-shadow: 0 3px 0 rgba(59, 58, 90, 0.15);
+}
+
+/* 책장: 화면 폭에 맞춰 1~3칸 */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 18px;
+}
+
+.shelf-book {
+  position: relative;
+}
+
+.shelf-open {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: none;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--card);
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(59, 58, 90, 0.1);
+}
+
+.shelf-open:active {
+  transform: scale(0.98);
+}
+
+.shelf-open img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #eee;
+}
+
+.shelf-title {
+  padding: 12px 14px 14px;
+  font-family: var(--font-en);
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.shelf-delete {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.shelf-add {
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 3px dashed #e2dcef;
+  border-radius: 22px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+}
+
+.shelf-add span {
+  font-size: 2.4rem;
+}

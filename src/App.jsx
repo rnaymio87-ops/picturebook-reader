@@ -1,14 +1,33 @@
 import { useState } from 'react'
+import AddBook from './add-book/AddBook.jsx'
+import Library from './library/Library.jsx'
+import { getBook } from './library/libraryStore.js'
 import Reader from './reader/Reader.jsx'
-import sampleBook from './data/sample-brown-bear.json'
 import './App.css'
 
-// 첫 화면. 버튼들은 단계마다 하나씩 살아납니다.
+// 화면 이동: 첫 화면 / 내 책장 / 새 책 만들기 / 읽기
 function App() {
-  const [screen, setScreen] = useState('home')
+  const [screen, setScreen] = useState({ name: 'home' })
+  const goHome = () => setScreen({ name: 'home' })
+  const goLibrary = () => setScreen({ name: 'library' })
 
-  if (screen === 'sample') {
-    return <Reader book={sampleBook} onBack={() => setScreen('home')} />
+  if (screen.name === 'reader') {
+    const book = getBook(screen.bookId)
+    if (book) return <Reader key={book.id} book={book} onBack={goLibrary} />
+  }
+
+  if (screen.name === 'library') {
+    return (
+      <Library
+        onBack={goHome}
+        onOpen={(bookId) => setScreen({ name: 'reader', bookId })}
+        onAdd={() => setScreen({ name: 'add' })}
+      />
+    )
+  }
+
+  if (screen.name === 'add') {
+    return <AddBook onBack={goHome} onCreated={(book) => setScreen({ name: 'reader', bookId: book.id })} />
   }
 
   return (
@@ -20,15 +39,11 @@ function App() {
       </header>
 
       <nav className="home-buttons">
-        <button className="big-button blue" onClick={() => setScreen('sample')}>
-          <span className="big-button-emoji">🐻</span>
-          Brown Bear 읽기
-        </button>
-        <button className="big-button yellow" disabled>
+        <button className="big-button yellow" onClick={goLibrary}>
           <span className="big-button-emoji">📚</span>
           내 책장
         </button>
-        <button className="big-button pink" disabled>
+        <button className="big-button pink" onClick={() => setScreen({ name: 'add' })}>
           <span className="big-button-emoji">📷</span>
           새 책 추가
         </button>

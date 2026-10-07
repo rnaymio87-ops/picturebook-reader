@@ -1,0 +1,131 @@
+.add-book {
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: var(--app-h, 100dvh);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: max(12px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
+}
+
+.add-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.add-top h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+/* 앱 공통 동그란 버튼 (읽기 화면과 같은 모양) */
+.add-book .corner-button {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 1.5rem;
+  box-shadow: 0 3px 0 rgba(59, 58, 90, 0.15);
+}
+
+.add-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 16px;
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 8px 24px rgba(59, 58, 90, 0.08);
+}
+
+.add-card h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: normal;
+}
+
+.add-help {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.add-paste,
+.add-create {
+  min-height: 60px;
+  border: none;
+  border-radius: 18px;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 0 rgba(59, 58, 90, 0.15);
+}
+
+.add-paste {
+  background: #e3f2ff;
+  color: #3d7cc9;
+}
+
+.add-textarea,
+.add-input {
+  width: 100%;
+  border: 2px solid #ece8f5;
+  border-radius: 14px;
+  padding: 12px;
+  background: #fbfaff;
+  color: var(--ink);
+  /* 16px 이상이어야 아이폰이 입력할 때 화면을 확대하지 않음 */
+  font: 16px/1.5 system-ui, sans-serif;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.add-textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.add-found {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.add-thumb {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.add-error {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #ffe8ee;
+  color: #b23a5e;
+  line-height: 1.5;
+}
+
+.add-create {
+  background: var(--pink);
+  color: #fff;
+  font-size: 1.4rem;
+  box-shadow: 0 5px 0 #e5678f;
+}
+
+.add-create:disabled {
+  opacity: 0.45;
+}
+
+.add-paste:active,
+.add-create:active:not(:disabled) {
+  transform: translateY(3px);
+}
