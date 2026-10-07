@@ -17,6 +17,23 @@ registerSW({
   },
 })
 
+// 실제로 보이는 화면 높이를 재서 CSS 변수 --app-h로 알려줌.
+// 아이폰 홈 화면 앱에서는 CSS의 100dvh가 실제보다 크게 나와서 화면 아래가 잘릴 때가 있음.
+function updateAppHeight() {
+  const h = window.visualViewport?.height ?? window.innerHeight
+  document.documentElement.style.setProperty('--app-h', `${Math.round(h)}px`)
+}
+updateAppHeight()
+window.addEventListener('resize', updateAppHeight)
+window.visualViewport?.addEventListener('resize', updateAppHeight)
+window.addEventListener('orientationchange', () => {
+  // 돌린 직후엔 크기가 아직 안 바뀌었을 수 있어서 조금 뒤에 한 번 더
+  setTimeout(() => {
+    updateAppHeight()
+    window.scrollTo(0, 0)
+  }, 300)
+})
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />

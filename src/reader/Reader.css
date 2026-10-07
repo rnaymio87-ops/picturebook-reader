@@ -5,15 +5,16 @@
   --text-scale: 1;
   --video-ratio: 1.7778; /* 16:9. 영상 정보를 받으면 그 영상 모양으로 바뀜 */
   /* 화면 높이에 딱 맞춤 (글이 넘치면 스크롤 대신 다음 페이지로) */
-  height: 100dvh;
+  height: var(--app-h, 100dvh);
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr) auto auto;
   grid-template-areas: 'top' 'text' 'controls' 'pager';
   gap: 12px;
+  /* 아래쪽은 아이폰 홈 바(가로 막대) 자리만큼 넉넉히 */
   padding: max(12px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
-    max(12px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    max(28px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
   max-width: 900px;
   margin: 0 auto;
   position: relative;
@@ -27,6 +28,7 @@
     grid-template-rows: auto 1fr auto auto;
     grid-template-areas: 'top text' '. text' 'controls text' 'pager text';
     gap: 8px 24px;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
   }
 }
 
@@ -96,14 +98,14 @@
   grid-area: video;
   position: relative;
   width: 100%;
-  max-width: calc(35dvh * var(--video-ratio));
+  max-width: calc(var(--app-h, 100dvh) * 0.35 * var(--video-ratio));
   margin: 0 auto;
 }
 
 @media (orientation: landscape) {
   .video-wrap {
     /* 가로 화면: ←·재생 버튼·페이지 넘김 자리를 빼고 남는 높이만큼 */
-    max-width: calc((100dvh - 210px) * var(--video-ratio));
+    max-width: calc((var(--app-h, 100dvh) - 222px) * var(--video-ratio));
   }
 }
 
@@ -137,18 +139,14 @@
   background: var(--pink);
 }
 
-/* 아이폰 가로 화면 보정:
-   아이폰은 카메라(다이나믹 아일랜드) 여백 정보를 유튜브 플레이어 안에도 알려줘서,
-   유튜브가 그 폭만큼 영상을 안쪽으로 밀어 그림 → 영상이 밀려 잘려 보임.
-   그래서 플레이어를 여백만큼 바깥으로 넓혀 두면, 밀린 영상이 딱 상자에 맞게 들어옴.
-   (여백이 없는 세로 화면·다른 기기에선 env(...)가 0이라 아무 변화 없음)
-   주의: 확대·축소(transform)는 아이폰에서 영상이 어긋나므로 쓰지 말 것 */
+/* 주의: 아이폰에서 영상이 밀려 잘리지 않으려면
+   - index.html에 viewport-fit=cover를 넣지 말 것 (카메라 여백 정보가 플레이어 안까지 전달됨)
+   - iframe을 확대·축소(transform)하지 말 것 */
 .yt-box iframe {
   position: absolute;
-  top: 0;
-  left: calc(-1 * env(safe-area-inset-left, 0px));
+  inset: 0;
   display: block;
-  width: calc(100% + env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px));
+  width: 100%;
   height: 100%;
 }
 
@@ -457,7 +455,7 @@
 .sheet {
   width: 100%;
   max-width: 560px;
-  max-height: 100dvh;
+  max-height: var(--app-h, 100dvh);
   overflow-y: auto;
   padding: 20px 16px max(20px, env(safe-area-inset-bottom));
   border-radius: 28px 28px 0 0;
