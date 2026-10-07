@@ -75,6 +75,8 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
         playerVars: {
           playsinline: 1, // 아이폰에서 전체화면으로 튀어나가지 않게
           rel: 0, // 끝나고 다른 채널 영상 추천 줄이기
+          iv_load_policy: 3, // 영상 위 광고성 메모(주석) 숨기기
+          cc_load_policy: 0,
         },
         events: {
           onReady: (e) => e.target.setPlaybackRate(rateRef.current),
@@ -84,7 +86,11 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
             onPlayingRef.current?.(playing)
             cancelAnimationFrame(frame)
             base = null
-            if (playing) frame = requestAnimationFrame(tick)
+            if (playing) {
+              // 유튜브 자체 자막은 끔 (아이가 앱의 큰 글씨를 보도록)
+              e.target.unloadModule?.('captions')
+              frame = requestAnimationFrame(tick)
+            }
           },
         },
       })

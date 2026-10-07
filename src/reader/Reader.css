@@ -3,6 +3,7 @@
    가로: 책처럼 왼쪽(영상·버튼) | 오른쪽(글) */
 .reader {
   --text-scale: 1;
+  --video-ratio: 1.7778; /* 16:9. 영상 정보를 받으면 그 영상 모양으로 바뀜 */
   /* 화면 높이에 딱 맞춤 (글이 넘치면 스크롤 대신 다음 페이지로) */
   height: 100dvh;
   overflow: hidden;
@@ -22,17 +23,18 @@
   .reader {
     max-width: none;
     grid-template-columns: minmax(0, 9fr) minmax(0, 11fr);
-    /* 왼쪽: 위(← + 영상) / 가운데(재생 버튼) / 아래(페이지 넘김) */
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas: 'top text' 'controls text' 'pager text';
-    column-gap: 24px;
+    /* 왼쪽: 위(← 아래에 영상) / 빈 공간 / 맨 아래쪽(재생 버튼, 페이지 넘김) */
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas: 'top text' '. text' 'controls text' 'pager text';
+    gap: 8px 24px;
   }
 }
 
 /* 위쪽 묶음
    세로: [←      ⚙️]  첫 줄은 버튼만
          [  영상    ]  약 0.4cm 띄우고, 그 아래 영상을 폭 가득
-   가로: [← 영상]      ←는 화면 왼쪽 위 끝, ⚙️는 화면 오른쪽 위 끝 */
+   가로: [←      ]      ←는 화면 왼쪽 위 끝 (⚙️는 화면 오른쪽 위 끝)
+         [  영상  ]      그 아래 영상을 왼쪽 칸 폭 가득 */
 .reader-top {
   grid-area: top;
   display: grid;
@@ -45,7 +47,8 @@
 @media (orientation: landscape) {
   .reader-top {
     grid-template-columns: auto minmax(0, 1fr);
-    grid-template-areas: 'back video';
+    grid-template-areas: 'back .' 'video video';
+    gap: 8px;
   }
 }
 
@@ -58,6 +61,12 @@
 }
 
 @media (orientation: landscape) {
+  .reader .corner-button {
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
+  }
+
   .corner-button.settings {
     position: absolute;
     top: max(12px, env(safe-area-inset-top));
@@ -83,37 +92,34 @@
   grid-area: video;
   position: relative;
   width: 100%;
-  max-width: calc(35dvh * 16 / 9);
+  max-width: calc(35dvh * var(--video-ratio));
   margin: 0 auto;
 }
 
 @media (orientation: landscape) {
   .video-wrap {
-    /* 가로 화면: 아래 버튼들 자리를 빼고 남는 높이만큼 */
-    max-width: calc((100dvh - 190px) * 16 / 9);
+    /* 가로 화면: ←·재생 버튼·페이지 넘김 자리를 빼고 남는 높이만큼 */
+    max-width: calc((100dvh - 210px) * var(--video-ratio));
   }
 }
 
+/* 상자 모양 = 영상 모양 (--video-ratio: 16:9, 4:3 등 영상마다 자동) */
 .yt-box {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--video-ratio);
   border-radius: 16px;
   overflow: hidden;
   background: #000;
 }
 
-/* 화질 개선: 유튜브는 플레이어가 작으면 낮은 화질을 고름.
-   실제로는 2배 크기로 만들고 절반으로 줄여 보여줘서 더 선명한 화질을 받음 */
+/* 주의: 아이폰은 영상 iframe을 확대·축소(transform)하면 화면이 밀려 잘림. 그대로 둘 것 */
 .yt-box iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   display: block;
-  width: 200%;
-  height: 200%;
-  transform: scale(0.5);
-  transform-origin: 0 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* 영상 위 투명 터치 판 (두 번 톡톡 / 1.5초 꾹) */
@@ -320,6 +326,39 @@
 
 .speed-badge:active {
   transform: translateY(2px);
+}
+
+/* 가로 화면: 영상을 크게 하려고 아래쪽 버튼들은 조금 작게 */
+@media (orientation: landscape) {
+  .reader-controls {
+    gap: 20px;
+  }
+
+  .step-button {
+    width: 52px;
+    height: 52px;
+    font-size: 1.2rem;
+  }
+
+  .play-button {
+    width: 68px;
+    height: 68px;
+    font-size: 1.8rem;
+  }
+
+  .page-bar {
+    gap: 14px;
+  }
+
+  .page-button {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .speed-badge {
+    height: 36px;
+  }
 }
 
 .sheet-tip {

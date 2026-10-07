@@ -1,5 +1,6 @@
-import { Fragment, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import YouTubePlayer from '../player/YouTubePlayer.jsx'
+import { getVideoAspectRatio } from '../player/videoShape.js'
 import { useStoredState } from '../useStoredState.js'
 import { findWordAt, sentenceOfWord, sentenceStartedBy } from './bookModel.js'
 import { paginate } from './paginate.js'
@@ -21,6 +22,16 @@ function Reader({ book, onBack }) {
   const [videoHidden, setVideoHidden] = useStoredState('reader.hideVideo', false)
   const [speed, setSpeed] = useStoredState('reader.speed', 1)
   const [textSize, setTextSize] = useStoredState('reader.textSize', 1)
+
+  // 영상 모양(가로:세로)에 맞춰 상자 모양 정하기
+  const [videoRatio, setVideoRatio] = useState(16 / 9)
+  useEffect(() => {
+    let alive = true
+    getVideoAspectRatio(book.videoId).then((r) => alive && setVideoRatio(r))
+    return () => {
+      alive = false
+    }
+  }, [book.videoId])
 
   const wordIndex = findWordAt(book.words, time)
   const sentenceIndex = sentenceOfWord(book.sentences, wordIndex)
@@ -124,7 +135,7 @@ function Reader({ book, onBack }) {
   }
 
   return (
-    <main className="reader" style={{ '--text-scale': textSize }}>
+    <main className="reader" style={{ '--text-scale': textSize, '--video-ratio': videoRatio }}>
       <div className="reader-top">
         <button className="corner-button back" onClick={onBack} aria-label="처음으로">
           ←
