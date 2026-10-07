@@ -32,7 +32,7 @@
 
 /* 위쪽 묶음
    세로: [←      ⚙️]  첫 줄은 버튼만
-         [  영상    ]  약 0.4cm 띄우고, 그 아래 영상을 폭 가득
+         [  영상    ]  살짝 띄우고, 그 아래 영상을 폭 가득
    가로: [←      ]      ←는 화면 왼쪽 위 끝 (⚙️는 화면 오른쪽 위 끝)
          [  영상  ]      그 아래 영상을 왼쪽 칸 폭 가득 */
 .reader-top {
@@ -41,7 +41,7 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-areas: 'back . settings' 'video video video';
   align-items: start;
-  gap: 34px 12px;
+  gap: 22px 12px;
 }
 
 @media (orientation: landscape) {

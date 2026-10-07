@@ -79,7 +79,10 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
           cc_load_policy: 0,
         },
         events: {
-          onReady: (e) => e.target.setPlaybackRate(rateRef.current),
+          onReady: (e) => {
+            e.target.setPlaybackRate(rateRef.current)
+            resizePlayer()
+          },
           onError: (e) => console.warn('[YouTubePlayer] 오류 코드', e.data),
           onStateChange: (e) => {
             const playing = e.data === YT.PlayerState.PLAYING
@@ -96,9 +99,29 @@ const YouTubePlayer = forwardRef(function YouTubePlayer({ videoId, onTime, onPla
       })
     })
 
+    // 상자 크기가 바뀌면(가로/세로 돌리기 등) 플레이어에게 새 크기를 알려줌.
+    // 안 알려주면 아이폰에서 영상이 예전 크기로 남아 잘리거나 깨져 보임.
+    const box = boxRef.current
+    let sizeTimer = null
+    function resizePlayer() {
+      clearTimeout(sizeTimer)
+      sizeTimer = setTimeout(() => {
+        const { clientWidth, clientHeight } = box
+        if (clientWidth && clientHeight) playerRef.current?.setSize?.(clientWidth, clientHeight)
+      }, 150)
+    }
+    const observer = new ResizeObserver(resizePlayer)
+    observer.observe(box)
+    window.addEventListener('resize', resizePlayer)
+    window.addEventListener('orientationchange', resizePlayer)
+
     return () => {
       cancelled = true
       cancelAnimationFrame(frame)
+      clearTimeout(sizeTimer)
+      observer.disconnect()
+      window.removeEventListener('resize', resizePlayer)
+      window.removeEventListener('orientationchange', resizePlayer)
       playerRef.current?.destroy()
       playerRef.current = null
     }
